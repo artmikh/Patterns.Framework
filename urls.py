@@ -1,8 +1,7 @@
 from views import *
 
 routes = {
-    '': Index(),
-    '/about': About(),
-    '/contacts': Contacts(),
-    '/test': Test()
+    '/': Index(),
+    '/about/': About(),
+    '/contacts/': Contacts()
 }
