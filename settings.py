@@ -18,8 +18,18 @@ def TEST(variable):
 """ Путь к статичным файлам (css, font) """
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = (BASE_DIR / "static")
+# STATICFILES_DIRS = (BASE_DIR / "static")
+STATICFILES_ROOT = os.path.join(BASE_DIR, "static")
 
+# Подгрузка файла из статики
+def file_load(from_file):
+    static_file = os.path.join(STATICFILES_ROOT, from_file)
+    with open(static_file, encoding='utf-8') as f:
+        var = f.read()
+    return var
+
+
+css_file = file_load('css/style.css')
 
 # dir_path = os.path.dirname(os.path.realpath(__file__))
 # dir_path = os.getcwd()
