@@ -9,5 +9,17 @@
 {% endblock %}
 
 {% block body %}
-	{% include "includes/inc-index-body.html" %}
+
+	<div>
+		<a href="/create-category/">Создать новую категорию</a>
+	</div>
+	<div>
+		<h1>Список существующих категорий</h1>
+        {% for item in objects_list %}
+        <li>
+            {{item.name}} <span>Количество курсов: {{item.course_count()}}</span>
+			<a href="/courses-list/?id={{item.id}}">Показать курсы</a>
+        </li>
+        {% endfor %}
+	</div>
 {% endblock %}

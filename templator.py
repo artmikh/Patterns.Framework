@@ -11,4 +11,4 @@ def render(template_name, **kwargs):
     # Открываем шаблон по имени
     template = env.get_template(template_name)
     # рендерим шаблон с параметрами
-    return template.render(**kwargs)
+    return template.render(css=settings.css_file, **kwargs)

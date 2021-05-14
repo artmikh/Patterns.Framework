@@ -28,22 +28,22 @@ class Application:
         if method == 'POST':
             data = PostRequests().get_request_params(environ)
             request['data'] = data
-            print(f'Нам пришёл post-запрос: {Application.decode_value(data)}')
+            print(f'Нам пришёл POST-запрос: {Application.decode_value(data)}')
         if method == 'GET':
             request_params = GetRequests().get_request_params(environ)
             request['request_params'] = request_params
-            print(f'Нам пришли GET-параметры: {request_params}')
+            print(f'Нам пришли GET-параметры: {Application.decode_value(request_params)}')
 
         # page controller
         if path in self.routes:
             view = self.routes[path]
         else:
             view = Not_found_404()
-        request = {}
 
         # front controller
         for front in self.fronts:
             front(request)
+        
         code, body = view(request)
         start_response(code, [('Content-Type', 'text/html')])
         return [body.encode('utf-8')]
