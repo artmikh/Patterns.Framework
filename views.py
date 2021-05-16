@@ -3,9 +3,7 @@ from templator import render
 from urls import AppRoute, routes
 from сreational_patterns import Engine, Logger
 from datetime import date
-# from run import Run
-# from main import DebugApplication
-# from front_controller import fronts
+from debug import Debug
 
 
 site = Engine()
@@ -14,7 +12,7 @@ logger = Logger('main')
 
 @AppRoute(routes=routes, url='/')
 class Index:
-
+    @Debug(name='Index')
     def __call__(self, request):
         # print(request)
         return '200 OK', render(
