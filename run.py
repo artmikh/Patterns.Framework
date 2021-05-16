@@ -4,8 +4,16 @@ from urls import routes
 from front_controller import fronts
 
 
-application = Application(routes, fronts)
+class Run:
 
-with make_server('', 8000, application) as httpd:
-    print("Serving on port 8000...")
-    httpd.serve_forever()
+    def __init__(self, app, port):
+        self.app = app
+        application = app
+
+        with make_server('', port, application) as httpd:
+            print(f"Serving on port {port}...")
+            httpd.serve_forever()
+
+
+if __name__ == '__main__':
+    start = Run(Application(routes, fronts), 8000)
